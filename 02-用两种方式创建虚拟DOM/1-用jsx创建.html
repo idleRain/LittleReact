@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<!--引入 react 核心库-->
+<script src="../lib/react.development.js"></script>
+<!--引入用于支持 react 操作 DOM 的库-->
+<script src="../lib/react-dom.development.js"></script>
+<!--引入 babel-->
+<script src="../lib/babel.min.js"></script>
+
+<script type="text/babel">
+    // 创建虚拟 DOM
+    const VDOM = <h1 id="title">Hello , React！</h1>
+    // 将虚拟 DOM 渲染到页面
+    ReactDOM.render(VDOM, document.querySelector('#test'))
+</script>
+</body>
+</html>
