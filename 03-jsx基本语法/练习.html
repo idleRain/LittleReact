@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .title {
-            background: orange;
-        }
-    </style>
 </head>
 <body>
 <div id="test"></div>
@@ -19,19 +14,18 @@
 <script src="../lib/babel.min.js"></script>
 
 <script type="text/babel">
-    const id = 'title'
-    const content = 'Hello , React!'
+    const data = ['Vue','React','Angular']
     const VDOM = (
         <div>
-            <h1 id={id} className="title">
-                <span style={{color: 'white'}}>{content}</span>
-            </h1>
-            <label>
-                <input type="text"/>
-            </label>
+            <h1>前端课表</h1>
+            <ul>
+                {
+                    data.map((item,index) => <li key={index}>{item}</li>)
+                }
+            </ul>
         </div>
     )
-    ReactDOM.render(VDOM, document.querySelector('#test'))
+    ReactDOM.render(VDOM,document.querySelector('#test'))
 </script>
 </body>
 </html>

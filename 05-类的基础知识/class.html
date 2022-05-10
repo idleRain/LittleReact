@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<!--引入 react 核心库-->
+<script src="../lib/react.development.js"></script>
+<!--引入用于支持 react 操作 DOM 的库-->
+<script src="../lib/react-dom.development.js"></script>
+<!--引入 babel-->
+<script src="../lib/babel.min.js"></script>
+
+<script type="text/babel">
+    class Person {
+        // 构造函数
+        constructor(name, age) {
+            this.name = name
+            this.age = age
+        }
+        speak() {
+            console.log(`我是${this.name}，年龄是${this.age}`)
+        }
+    }
+    // Student 继承于 Person
+    class Student extends Person {
+        // 构造函数
+        constructor(name,age,grade) {
+            // 继承后类的构造函数必须写 super()
+            super(name, age)
+            this.grade = grade
+        }
+        // 重写方法
+        speak() {
+            console.log(`我是${this.name}，年龄是${this.age}，年级是${this.grade}`)
+        }
+    }
+    const p = new Person('小丁','19')
+    const s = new Student('小何','20','18')
+    p.speak()
+    s.speak()
+</script>
+</body>
+</html>

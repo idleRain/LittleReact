@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<!--引入 react 核心库-->
+<script src="../lib/react.development.js"></script>
+<!--引入用于支持 react 操作 DOM 的库-->
+<script src="../lib/react-dom.development.js"></script>
+<!--引入 babel-->
+<script src="../lib/babel.min.js"></script>
+
+<script type="text/babel">
+    function MyComponent() {
+        return <h1>我是函数定义的组件，适用于【简单组件】的定义</h1>
+    }
+    // 组件标签名要与函数名相对应，并且是大写字母开头，多个单词要用大驼峰命名法
+    ReactDOM.render(<MyComponent/>,document.querySelector('#test'))
+</script>
+</body>
+</html>
