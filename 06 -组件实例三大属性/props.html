@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -14,11 +14,18 @@
 <script src="../lib/babel.min.js"></script>
 
 <script type="text/babel">
-    function MyComponent() {
-        return <h1>我是函数定义的组件，适用于【简单组件】的定义</h1>
+    class Person extends React.Component {
+        render() {
+            return (
+                <ul>
+                    <li>{this.props.name}</li>
+                    <li>{this.props.age}</li>
+                    <li>{this.props.denger}</li>
+                </ul>
+            )
+        }
     }
-    // 组件标签名要与函数名相对应，并且是大写字母开头，多个单词要用大驼峰命名法
-    ReactDOM.render(<MyComponent/>,document.querySelector('#test'))
+    ReactDOM.render(<Person name="小丁" age="18" denger="男"/>,document.querySelector('#test'))
 </script>
 </body>
 </html>

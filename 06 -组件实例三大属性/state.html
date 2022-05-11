@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<!--引入 react 核心库-->
+<script src="../lib/react.development.js"></script>
+<!--引入用于支持 react 操作 DOM 的库-->
+<script src="../lib/react-dom.development.js"></script>
+<!--引入 babel-->
+<script src="../lib/babel.min.js"></script>
+
+<script type="text/babel">
+    class Weather extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                isHot: true,
+                rain:'小雨'
+            }
+            // 解决直接调用 changeWeather 时，this 指向 window(undefined) 的问题
+            this.changeWeather = this.changeWeather.bind(this)
+        }
+
+        render() {
+            const {isHot,rain} = this.state
+            /*
+             * 直接调用 changeWeather 会被认为是 window 调用的
+             * 严格模式下 this 不能能够指向 window ，所以会是 undefined
+             * */
+            return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}，{rain}</h1>
+        }
+
+        changeWeather() {
+            // ！！ 不能直接修改状态，必须借助 react 提供的 API
+            // this.state.isHot = !this.state.isHot
+            // 用 setState 修改状态 , 且更新是合并，不是替换
+            this.setState({isHot: !this.state.isHot})
+        }
+    }
+
+    ReactDOM.render(<Weather/>, document.querySelector('#test'))
+
+</script>
+</body>
+</html>
