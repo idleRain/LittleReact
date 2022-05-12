@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<!--引入 react 核心库-->
+<script src="../lib/react.development.js"></script>
+<!--引入用于支持 react 操作 DOM 的库-->
+<script src="../lib/react-dom.development.js"></script>
+<!--引入对 Props 进行限制的包-->
+<script src="../lib/prop-types.js"></script>
+<!--引入 babel-->
+<script src="../lib/babel.min.js"></script>
+
+<script type="text/babel">
+    class Demo extends React.Component {
+        demo = () => {
+            console.log(this.ipt)
+            const {ipt} = this
+            alert(ipt.value)
+        }
+
+        render() {
+            // 这里用回调函数 ， ref 会被挂载到 this(Demo实例) 上
+            return (
+                <div>
+                    <input ref={c => this.ipt = c} type="text"/>
+                    <button onClick={this.demo}>点我展示输入框数据</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo/>, document.querySelector('#test'))
+</script>
+</body>
+</html>
