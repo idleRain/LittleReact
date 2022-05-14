@@ -16,30 +16,20 @@
 <script src="../lib/babel.min.js"></script>
 
 <script type="text/babel">
+    // 字符串 refs 是较老的写法 ， 目前不太推荐使用了 ， 可能在未来的版本中被移除
     class Demo extends React.Component {
         demo = () => {
-            console.log(this.ipt1)
-            const {ipt1} = this
-            alert(ipt1.value)
+            console.log(this.myRef.current)
+            alert(this.myRef.current.value)
         }
-        test = () => {
-            const {ipt2} = this
-            alert(ipt2.value)
-        }
-
-        // 绑定函数形式 , 不会频繁切换
-        saveInput = c => this.ipt2 = c
+        // 用 API 创建一个存放 ref 的容器 ，该容器只能存放一个ref
+        myRef = React.createRef()
 
         render() {
-            // 这里用回调函数 ， ref 会被挂载到 this(Demo实例) 上
             return (
                 <div>
-                    <label>
-                        <input ref={c => this.ipt1 = c} type="text"/>
-                        <input ref={this.saveInput} type="text"/>
-                    </label>
-                    <button onClick={this.demo}>点我展示输入框数据1</button>
-                    <button onClick={this.test}>点我展示输入框数据2</button>
+                    <input ref={this.myRef} type="text"/>
+                    <button onClick={this.demo}>点我展示输入框数据</button>
                 </div>
             )
         }
