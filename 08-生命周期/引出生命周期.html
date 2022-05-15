@@ -17,20 +17,25 @@
 
 <script type="text/babel">
     class Demo extends React.Component {
+        state = {
+            opacity: 1,
+        }
         death = () => {
             // 卸载组件
             ReactDOM.unmountComponentAtNode(document.querySelector('#test'))
         }
+
         render() {
             return (
                 <div>
-                    <h1>React学不会怎么办？</h1>
+                    <h1 style={{opacity: this.state.opacity}}>React学不会怎么办？</h1>
                     <button onClick={this.death}>不活了</button>
                 </div>
             )
         }
     }
-    ReactDOM.render(<Demo/>,document.querySelector('#test'))
+
+    ReactDOM.render(<Demo/>, document.querySelector('#test'))
 </script>
 </body>
 </html>
