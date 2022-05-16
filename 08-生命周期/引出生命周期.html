@@ -20,9 +20,26 @@
         state = {
             opacity: 1,
         }
+        // 杀死组件
         death = () => {
             // 卸载组件
             ReactDOM.unmountComponentAtNode(document.querySelector('#test'))
+        }
+
+        // 组件挂载完毕
+        componentDidMount() {
+            this.timer = setInterval(() => {
+                console.log('timer')
+                let {opacity} = this.state
+                opacity -= 0.01
+                if (opacity <= 0) opacity = 1
+                this.setState({opacity}, null)
+            }, 20)
+        }
+
+        // 组件卸载之前
+        componentWillUnmount() {
+            if (this.timer) clearInterval(this.timer)
         }
 
         render() {

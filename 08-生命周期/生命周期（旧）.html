@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<!--引入 react 核心库-->
+<script src="../lib/react.development.js"></script>
+<!--引入用于支持 react 操作 DOM 的库-->
+<script src="../lib/react-dom.development.js"></script>
+<!--引入对 Props 进行限制的包-->
+<script src="../lib/prop-types.js"></script>
+<!--引入 babel-->
+<script src="../lib/babel.min.js"></script>
+
+<script type="text/babel">
+    class Count extends React.Component {
+        // 构造器
+        constructor(props) {
+            console.log('constructor 被调用')
+            super(props)
+            this.state = {
+                count: 0
+            }
+        }
+        // 组件将要挂载
+        componentWillMount(){
+            console.log('componentWillMount 被调用')
+        }
+        // 组件挂载完毕
+        componentDidMount(){
+            console.log('componentDidMount 被调用')
+        }
+        // 控制组件更新的阀门，返回 true 就能往下走
+        shouldComponentUpdate(){
+            console.log('shouldComponentUpdate 被调用了')
+            // 必须有一个返回值，true 或 false ，默认为 true
+            return true
+        }
+        // +1 的回调函数
+        add = () => {
+            console.log('+1 的回调被调用')
+            const {count} = this.state
+            this.setState({
+                count: count + 1
+            },null)
+        }
+        // 渲染函数
+        render() {
+            console.log('render 被调用')
+            return (
+                <div>
+                    <h1>当前求和的值是：{this.state.count}</h1>
+                    <button onClick={this.add}>点我数字加一</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Count/>, document.querySelector('#test'))
+</script>
+</body>
+</html>
